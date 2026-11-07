@@ -4,6 +4,15 @@ A complete, production-ready full-stack marketplace connecting regional farmers 
 
 ---
 
+## 🚀 Deploy on Render
+
+1. Create a MongoDB database on [MongoDB Atlas](https://www.mongodb.com/atlas) and allow connections from Render. Copy its connection string.
+2. Push this repository to GitHub and create a new Blueprint on [Render](https://render.com/) using the repository. Render reads the root `render.yaml` to create the API and static frontend.
+3. When prompted, set `MONGO_URI` to the Atlas connection string. Render generates `JWT_SECRET` and connects the API and frontend automatically.
+4. Wait for both services to finish deploying. The API health check is available at `/api/health`.
+
+The deployed app intentionally includes the demo accounts below, including the fixed admin password `ChangeMe123!`. Treat this as a public demo only: anyone can use that admin account. Do not use the demo database for private or real customer data.
+
 ## ⚡ Quick Start (1-Click Run)
 
 ### Option A: Windows Double-Click (Easiest)

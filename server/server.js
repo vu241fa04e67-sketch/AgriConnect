@@ -17,8 +17,12 @@ import reviewRoutes from './routes/reviewRoutes.js';
 const app = express();
 
 app.use(helmet());
+const configuredClientUrl = process.env.CLIENT_URL || 'http://localhost:5173';
+const clientOrigin = new URL(
+  configuredClientUrl.includes('://') ? configuredClientUrl : `https://${configuredClientUrl}`
+).origin;
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5173',
+  origin: clientOrigin,
   credentials: true
 }));
 app.use(express.json({ limit: '1mb' }));
