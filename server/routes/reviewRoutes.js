@@ -1,0 +1,1 @@
+import {Router} from 'express';import {createReview,farmerReviews} from '../controllers/reviewController.js';import {protect,allow} from '../middleware/auth.js';const r=Router();r.post('/',protect,allow('Buyer'),createReview);r.get('/farmer/:farmerId',farmerReviews);export default r;

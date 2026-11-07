@@ -1,0 +1,23 @@
+{
+  "name": "agriconnect",
+  "version": "1.0.0",
+  "description": "AgriConnect — Farmer-to-Buyer Direct Marketplace (Full-Stack MERN)",
+  "private": true,
+  "scripts": {
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "seed": "npm run seed --prefix server",
+    "test": "node --prefix server -e \"import('./server/server.js').then(async () => { await new Promise(r => setTimeout(r, 1500)); const { default: runTests } = await import('./server/test-flows.js'); await runTests(); process.exit(0); })\""
+  },
+  "keywords": [
+    "agriconnect",
+    "marketplace",
+    "agriculture",
+    "mern",
+    "react",
+    "nodejs",
+    "mongodb"
+  ],
+  "author": "AgriConnect Team",
+  "license": "ISC"
+}

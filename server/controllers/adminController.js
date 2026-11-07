@@ -1,0 +1,5 @@
+import User from '../models/User.js';import Crop from '../models/Crop.js';import Order from '../models/Order.js';
+export async function users(req,res){res.json(await User.find().select('-passwordHash').sort({createdAt:-1}));}
+export async function verifyFarmer(req,res){const user=await User.findOneAndUpdate({_id:req.params.id,role:'Farmer'},{isVerified:true},{new:true}).select('-passwordHash');if(!user)return res.status(404).json({message:'Farmer not found'});res.json(user);}
+export async function removeListing(req,res){const crop=await Crop.findByIdAndUpdate(req.params.id,{status:'Inactive'},{new:true});if(!crop)return res.status(404).json({message:'Listing not found'});res.json({message:'Listing deactivated'});}
+export async function reports(req,res){const [userCount,cropCount,orderCount,revenue]=await Promise.all([User.countDocuments(),Crop.countDocuments({status:'Active'}),Order.countDocuments(),Order.aggregate([{$match:{orderStatus:'Fulfilled'}},{$group:{_id:null,total:{$sum:'$totalAmount'}}}])]);res.json({userCount,cropCount,orderCount,completedSales:revenue[0]?.total||0});}

@@ -1,0 +1,1 @@
+import {Router} from 'express';import {users,verifyFarmer,removeListing,reports} from '../controllers/adminController.js';import {protect,allow} from '../middleware/auth.js';const r=Router();r.use(protect,allow('Admin'));r.get('/users',users);r.patch('/farmers/:id/verify',verifyFarmer);r.delete('/crops/:id',removeListing);r.get('/reports',reports);export default r;
